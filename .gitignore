@@ -1,1 +1,4 @@
 scripts/test_data/*
+
+!scripts/test_data/bookmark_input_example.json
+!scripts/test_data/bookmark_output_example.json
