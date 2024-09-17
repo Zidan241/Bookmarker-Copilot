@@ -1,0 +1,29 @@
+{
+  "appName": {
+    "message": "Bookmark Copilot"
+  },
+  "appDesc": {
+    "message": "Organize your bookmarks with copilot"
+  },
+  "btnAdd": {
+    "message":"AddCurrentPage"
+  },
+  "btnGenerate": {
+    "message":"Generate"
+  },
+  "btnRegenerate": {
+    "message":"Regenerate"
+  },
+  "btnAdjust": {
+    "message":"Adjust"
+  },
+  "btnDiscard": {
+    "message":"Discard"
+  },
+  "btnApply": {
+    "message":"Apply"
+  },
+  "inputBoxTitle": {
+    "message":"Organize with copilot"
+  }
+}
