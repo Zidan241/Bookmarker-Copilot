@@ -1,0 +1,26 @@
+{
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
+  "icons": {
+    "12": "img/icon12.png",
+    "48": "img/icon48.png"
+  },
+  "action": {
+    "default_icon": {
+      "20": "img/icon20.png",
+      "28": "img/icon28.png"
+    },
+    "default_title": "Bookmark Copilot",
+    "default_popup": "index.html"
+  },
+  "content_security_policy": {
+    //"extension_pages": "default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; require-trusted-types-for 'script'; trusted-types 'none'"
+  },
+  "background": {
+    //"service_worker": "background.js"
+  },
+  "permissions": [ "bookmarks", "tabs", "favicon", "history"]
+}

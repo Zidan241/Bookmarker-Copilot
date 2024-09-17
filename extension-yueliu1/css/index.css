@@ -1,0 +1,93 @@
+body {
+  width: 400px;  /* Fixed width for popup */
+  height: 600px; /* Fixed height for popup */
+  margin: 0;
+  overflow-y: auto; /* Enable vertical scroll if needed */
+}
+
+#bookmarkTree {
+  padding: 0;
+  margin: 0;
+}
+/* Basic header styling */
+header {
+  text-align: left;   /* left-align the text */
+  padding: 10px 20px;  /* Add some padding for spacing */
+  font-size: 16px;     /* Adjust the font size if needed */
+  font-weight: bold; /* Normal font weight */
+  color: black;        /* Set the text color to black */
+  background-color: transparent; /* No background color */
+  border-bottom: 1px solid #ddd; /* Optional: Add a bottom border for separation */
+}
+/* Link styling (header clickable) */
+header a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Optional hover effect */
+header a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;  /* No padding for root */
+  margin-left: 0;
+}
+
+li {
+  display: block; /* Ensure each list item is a block element */
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+li.folder .arrow {
+  width: 0;
+  height: 0;
+  margin-right: 8px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black;  /* Right-facing arrow */
+  transform: rotate(-90deg);  /* Default direction is right */
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+li.folder .arrow.down {
+  transform: rotate(0deg);  /* Downward-facing arrow when folder is open */
+}
+
+li.folder .folder-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  background-image: url('../img/folder_icon.png');  /* Replace with your folder icon URL */
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+li.bookmark .favicon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+li.bookmark:hover {
+  background-color: #f0f0f0;
+}
+
+ul ul {
+  padding-left: 16px;  /* Indentation for nested elements */
+  display: none;  /* Initially hidden */
+}
+
+li.open ul {
+  display: block; /* Show children when folder is open */
+}

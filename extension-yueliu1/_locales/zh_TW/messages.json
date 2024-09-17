@@ -1,0 +1,29 @@
+{
+  "appName": {
+    "message": "收藏夹copilot"
+  },
+  "appDesc": {
+    "message": "用copilot组织你的收藏夹"
+  },
+  "btnAdd": {
+    "message":"添加当前页面"
+  },
+  "btnGenerate": {
+    "message":"生成"
+  },
+  "btnRegenerate": {
+    "message":"重新生成"
+  },
+  "btnAdjust": {
+    "message":"调整"
+  },
+  "btnDiscard": {
+    "message":"放弃"
+  },
+  "btnApply": {
+    "message":"应用"
+  },
+  "inputBoxTitle": {
+    "message":"用copilot组织"
+  }
+}
