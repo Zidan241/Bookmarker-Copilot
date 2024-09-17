@@ -1,0 +1,54 @@
+[
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "dateAdded": 1719154490876,
+                                "id": "704",
+                                "index": 0,
+                                "parentId": "705",
+                                "title": "appliedai-rag101/rag_skills/samples/financial_transcripts/tutorial-only.ipynb at tutorial · microsoft/appliedai-rag101 · GitHub",
+                                "url": "https://github.com/microsoft/appliedai-rag101/blob/tutorial/rag_skills/samples/financial_transcripts/tutorial-only.ipynb"
+                            }
+                        ],
+                        "dateAdded": 1719154498804,
+                        "dateGroupModified": 1719154562648,
+                        "id": "705",
+                        "index": 3,
+                        "parentId": "1",
+                        "title": "Learning"
+                    },
+                    {
+                        "dateAdded": 1723101930560,
+                        "id": "779",
+                        "index": 7,
+                        "parentId": "1",
+                        "title": "Courses - DeepLearning.AI",
+                        "url": "https://www.deeplearning.ai/courses/"
+                    }
+                ],
+                "dateAdded": 1667904052493,
+                "dateGroupModified": 1723971412633,
+                "id": "1",
+                "index": 0,
+                "parentId": "0",
+                "title": "Favorites bar"
+            },
+            {
+                "children": [],
+                "dateAdded": 1667904052493,
+                "dateGroupModified": 1714409659503,
+                "id": "2",
+                "index": 1,
+                "parentId": "0",
+                "title": "Other favorites"
+            }
+        ],
+        "dateAdded": 1725992680684,
+        "id": "0",
+        "title": ""
+    }
+]
