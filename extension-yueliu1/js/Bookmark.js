@@ -1,80 +1,72 @@
 export default class Bookmark {
   constructor() {
-    document.addEventListener('DOMContentLoaded', function() {
-      function createTree(node, parentElement) {
-        let li = document.createElement("li");
-
-        li.style.paddingLeft = 16 + "px";
-
+    document.addEventListener('DOMContentLoaded', function () {
+      chrome.bookmarks.getTree(function (bookmarkTreeNodes) {
+          buildBookmarkTree(bookmarkTreeNodes[0].children);
+      });
+    });
+    function buildBookmarkTree(bookmarkNodes, parentElement = document.getElementById('bookmarkTree')) {
+      bookmarkNodes.forEach(function (node) {
+        let div;
         // Check if node is a folder or a bookmark
         if (node.children) {
-          li.classList.add("folder");
-      
-          // Create arrow icon for folder (toggle indicator)
-          let arrowIcon = document.createElement("i");
-          arrowIcon.className = "arrow right"; // Initially pointing right
-          li.appendChild(arrowIcon);
-
-          // Create folder icon
-          let folderIcon = document.createElement("i");
-          folderIcon.className = "folder-icon";
-          li.appendChild(folderIcon);
-
-          // Set folder title
-          let span = document.createElement("span");
-          span.textContent = node.title;
-          li.appendChild(span);
-
+          div = document.createElement('div');
+          div.className = 'list-item-folder';
+          div.innerHTML = `
+              <div class="list-container">
+                  <div class="checkmark-control1"></div>
+                  <img class="icon-20px" alt="" src="img/Chevron.svg">
+                  <div class="item">
+                      <div class="favicon-wrapper">
+                          <img class="folder-icon" alt="" src="img/folder_icon.png">
+                      </div>
+                      <div class="align-text">
+                          <div class="label">${node.title}</div>
+                      </div>
+                  </div>
+              </div>
+          `;
+  
           // Add click event to toggle folder
-          li.addEventListener("click", function() {
-            event.stopPropagation();  // Prevents click events from propagating upwards
-            li.classList.toggle("open");
-      
-            // Toggle the arrow's direction and show/hide nested contents
-            ul.style.display = ul.style.display === "none" ? "block" : "none";
-            arrowIcon.classList.toggle("down");
+          const chevron = div.querySelector('.icon-20px');
+          let isExpanded = false;
+          chevron.addEventListener('click', function () {
+              if (isExpanded) {
+                  chevron.src = 'img/Chevron.svg';
+                  ul.style.display = 'none';
+              } else {
+                  chevron.src = 'img/Chevron-down.svg';
+                  ul.style.display = 'block';
+              }
+              isExpanded = !isExpanded;
           });
-
+  
           // Create the nested UL element with padding for indentation
           let ul = document.createElement("ul");
           ul.style.display = "none"; // Initially hidden
-          li.appendChild(ul);
-
+          div.appendChild(ul);
+  
           // Recursively build the tree for child nodes
-          node.children.forEach((child) => createTree(child, ul));
+          buildBookmarkTree(node.children, ul);
         } else {
-          li.classList.add("bookmark");
-
-          // Create favicon for bookmark
-          let favicon = document.createElement("i");
-          favicon.className = "favicon";
           let faviconUrl = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;
           //TODO: Fix can't load edge://favicon2 resource issue
           //let faviconUrl = `chrome://favicon/${node.url}`;
-          favicon.style.backgroundImage = `url(${faviconUrl})`;
-      
-          // Append favicon and title
-          li.appendChild(favicon);
-          let a = document.createElement("a");
-          a.href = node.url;
-          a.textContent = node.title;
-          a.target = "_blank";
-          li.appendChild(a);
+          div = document.createElement('div');
+          div.className = 'list-item-link';
+          div.innerHTML = `
+              <div class="list-container">
+                  <div class="checkmark-control1"></div>
+                  <img class="icon-20px" alt="" src="${faviconUrl}">
+                  <div class="text2">
+                      <a class="list-item-text" href=${node.url} title=${node.title} tabindex="-1" target="_blank" dir="auto" rel="noreferrer">${node.title}</a>
+                  </div>
+              </div>
+          `;
         }
-      
-        parentElement.appendChild(li);
-      }
-      // Fetch the bookmarks and build the tree
-      chrome.bookmarks.getTree(bookmarkTreeNodes => {
-        let treeContainer = document.getElementById("bookmarkTree");
-        // Only process the children of the root node (Bookmark Bar, Other Bookmarks, Mobile Bookmarks)
-        let rootChildren = bookmarkTreeNodes[0].children;
-        rootChildren.forEach((rootChild) => {
-          createTree(rootChild, treeContainer);
-        });
-        //this.bindEventListener();
+        parentElement.appendChild(div);
       });
-    });
+    }
     this.initI18n()
   }
 

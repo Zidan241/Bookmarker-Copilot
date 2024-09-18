@@ -1,0 +1,386 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* 防止body本身产生滚动 */
+}
+
+#bookmarkTree {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /* 启用垂直滚动条 */
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.icon-bookmark-copilot {
+  width: 20px;
+  position: relative;
+  height: 20px;
+}
+.placeholder-text {
+  width: 191px;
+  position: relative;
+  line-height: 20px;
+  font-weight: 600;
+  display: inline-block;
+}
+.title {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.icon-20px {
+  width: 20px;
+  position: relative;
+  height: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.button {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0);
+  height: 30px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 4px;
+  box-sizing: border-box;
+}
+.right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.title-row {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+}
+.string {
+  flex: 1;
+  position: relative;
+  line-height: 16px;
+}
+.card-string {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.card-string1 {
+  width: 252px;
+  height: 32px;
+  display: none;
+}
+.card-string2 {
+  width: 244px;
+  height: 16px;
+  display: none;
+}
+.subtitle {
+  width: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 8px 0px 0px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI Variable';
+}
+.title1 {
+  position: relative;
+  line-height: 16px;
+  font-weight: 600;
+}
+.icon-title {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+}
+.text {
+  position: relative;
+  line-height: 16px;
+}
+.text-wrapper-for-offset {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0px 0px 2px;
+}
+.button4 {
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  gap: 4px;
+  color: #424242;
+}
+.text1 {
+  position: relative;
+  line-height: 14px;
+  font-weight: 600;
+}
+.spacer-for-min-width {
+  width: 12px;
+  position: relative;
+  height: 1px;
+}
+.text-wrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.badge {
+  border-radius: 2px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  height: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 4px;
+  text-align: center;
+  font-size: 10px;
+  color: #616161;
+}
+.header {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 0;
+}
+.track {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  border-radius: 100px;
+  background: linear-gradient(90deg, #464feb 35%, #47cffa 70%, #b47cf8 92%);
+}
+.static-progressbar {
+  width: 100%;
+  margin: 0 !important;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: #e6e6e6;
+  border: 1px solid rgba(255, 255, 255, 0);
+  box-sizing: border-box;
+  height: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0px 240px 0px 0px;
+  z-index: 1;
+}
+.output-loader {
+  width: 400px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14), 0px 0px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  background-color: #fafafa;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 6px 8px 10px;
+  box-sizing: border-box;
+  position: relative;
+  gap: 8px;
+  color: #242424;
+}
+.chevron-icon {
+  width: 16px;
+  position: relative;
+  height: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.checkmark-control {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.list-item-text {
+  position: relative;
+  line-height: 20px;
+}
+.text2 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0px 2px;
+}
+.list-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 6px;
+  gap: 4px;
+}
+.list-item-link {
+  align-self: stretch;
+  border-radius: 2px;
+  height: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.checkmark-control1 {
+  width: 16px;
+  height: 16px;
+}
+.folder-icon {
+  width: 16px;
+  position: relative;
+  height: 16px;
+}
+.favicon-wrapper {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.label {
+  position: relative;
+  line-height: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.align-text {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1px 0px 3px;
+}
+.item {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4px 6px;
+  box-sizing: border-box;
+  gap: 4px;
+  min-width: 32px;
+  max-width: 146px;
+}
+.list-item-folder {
+  align-self: stretch;
+  border-radius: 2px;
+  height: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.86);
+  font-family: 'Segoe UI Variable';
+}
+.entertainment-mediainstagra {
+  width: 16px;
+  position: relative;
+  height: 16px;
+  object-fit: cover;
+}
+.top-section {
+  align-self: stretch;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 4px;
+  gap: 2px;
+}
+.list-sections {
+  align-self: stretch;
+  border-radius: 4px;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.bookmarked-pages-and-folders {
+  width: 312px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 14px;
+  color: #424242;
+}
+.bottom-card-level {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.56);
+  font-family: 'Segoe UI';
+}
+.bookmark-copilot-extension {
+  position: relative;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+  background-color: #fff;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 16px;
+  box-sizing: border-box;
+  gap: 8px;
+  text-align: left;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.86);
+  font-family: 'Segoe UI Variable';
+}
+
