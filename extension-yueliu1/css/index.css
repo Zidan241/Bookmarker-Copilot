@@ -1,6 +1,6 @@
 body {
-  width: 400px;  /* Fixed width for popup */
-  height: 600px; /* Fixed height for popup */
+  width: 500px;  /* Fixed width for popup */
+  height: auto;
   margin: 0;
   overflow-y: auto; /* Enable vertical scroll if needed */
 }
@@ -64,9 +64,6 @@ li.folder .folder-icon {
   width: 16px;
   height: 16px;
   margin-right: 8px;
-  background-image: url('../img/folder_icon.png');  /* Replace with your folder icon URL */
-  background-size: contain;
-  background-repeat: no-repeat;
   display: inline-block;
 }
 
@@ -90,4 +87,340 @@ ul ul {
 
 li.open ul {
   display: block; /* Show children when folder is open */
+}
+.bookmark-copilot-extension {
+  width: 100%;
+  position: relative;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 16px;
+  box-sizing: border-box;
+  gap: 8px;
+  text-align: left;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.86);
+  font-family: 'Segoe UI Variable';
+}
+.title-row {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+}
+.icon-bookmark-copilot {
+  width: 20px;
+  position: relative;
+  height: 20px;
+}
+.placeholder-text {
+  width: 191px;
+  position: relative;
+  line-height: 20px;
+  font-weight: 600;
+  display: inline-block;
+}
+.title {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.button {
+  border-radius: 4px;
+  background-color: #0f6cbd;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: #fff;
+  font-family: 'Segoe UI';
+}
+.container {
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.text {
+  position: relative;
+  line-height: 16px;
+}
+.text-wrapper-for-offset1 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0px 0px 2px;
+}
+.title {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.chevron-icon {
+  width: 12px;
+  position: relative;
+  height: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.bottom-card-level {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.56);
+}
+.subtitle {
+  width: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 8px 0px 0px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI Variable';
+}
+.string {
+  flex: 1;
+  position: relative;
+  line-height: 16px;
+}
+.card-string {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.card-string1 {
+  width: 252px;
+  height: 32px;
+  display: none;
+}
+.card-string2 {
+  width: 244px;
+  height: 16px;
+  display: none;
+}
+.prompt-starter {
+  width: 256px;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  box-sizing: border-box;
+  height: 54px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: none;
+}
+.keep {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4px;
+  color: #242424;
+  font-family: 'Segoe UI';
+}
+.row {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.text-wrapper-for-offset {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.carousel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.button1 {
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+.star-icon {
+  width: 20px;
+  position: relative;
+  height: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.step-count {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 3px 0px 5px;
+}
+.feedback-iconsthumb-uprest {
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+.feedback-and-disclaimer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  text-align: center;
+  font-size: 10px;
+  color: #707070;
+}
+.disclaimer {
+  position: relative;
+  line-height: 14px;
+}
+.toolbar {
+  align-self: stretch;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14), 0px 0px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  background-color: #fff;
+  border: 2px solid #464feb;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 8px;
+}
+.container1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4px;
+}
+.button3 {
+  border-radius: 4px;
+  background-color: #464feb;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  gap: 4px;
+  color: #fff;
+}
+.button4 {
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  gap: 4px;
+}
+.list-item-folder {
+  align-self: stretch;
+  border-radius: 2px;
+  height: 16px;
+  display: inline-block;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.86);
+  font-family: 'Segoe UI Variable';
+}
+.list-item-link {
+  align-self: stretch;
+  border-radius: 2px;
+  height: 16px;
+  display: block;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.icon-20px {
+  width: 20px;
+  position: relative;
+  height: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.icon-20px.down {
+  transform: rotate(90deg);
+}
+.label {
+  position: relative;
+  line-height: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.align-text {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1px 0px 3px;
+}
+.list-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px;
+  gap: 4px;
+}
+.item {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4px 0px;
+  box-sizing: border-box;
+  gap: 4px;
+  min-width: 32px;
+  max-width: 146px;
 }
