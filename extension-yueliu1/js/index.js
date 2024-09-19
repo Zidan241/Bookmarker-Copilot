@@ -25,4 +25,46 @@ $(document).ready(function() {
     console.log('Discard button clicked');
   });
 });
-let myBookmark = new Bookmark()
+
+let myBookmark = new Bookmark();
+addCurrentTab();
+
+function addCurrentTab() {
+  //const folderName = "Suggested Folder"; //Or suggested id?
+  const folderName = "hackathon_folder"; //Or suggested id?
+  
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const activeTab = tabs[0];
+
+      chrome.bookmarks.search({ title: folderName }, (results) => {
+          if (results.length === 0) {
+              chrome.bookmarks.create({ title: folderName }, (folder) => {
+                  addBookmarkToFolder(folder.id, activeTab);
+              });
+          } else {
+              addBookmarkToFolder(results[0].id, activeTab);
+          }
+      });
+  });
+}
+function addBookmarkToFolder(folderId, activeTab) {
+    chrome.bookmarks.create({
+        parentId: folderId,
+        title: activeTab.title,
+        url: activeTab.url
+    }, (newBookmark) => {
+        highlightAndScrollToFolder(folderId);
+    });
+}
+
+function highlightAndScrollToFolder(folderId) {
+  chrome.bookmarks.getSubTree(folderId, (nodes) => {
+      if (nodes.length > 0) {
+          const folderNode = nodes[0];
+          chrome.bookmarks.getChildren(folderNode.id, (children) => {
+              console.log("Folder contents:", children);
+              alert(`Bookmark added to folder "${folderNode.title}" and folder expanded!`);
+          });
+      }
+  });
+}
