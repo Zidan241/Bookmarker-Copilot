@@ -9,30 +9,27 @@ export default class Bookmark {
         // Check if node is a folder or a bookmark
         if (node.children) {
           li.classList.add("folder");
-      
-          // Create arrow icon for folder (toggle indicator)
-          let arrowIcon = document.createElement("i");
-          arrowIcon.className = "arrow right"; // Initially pointing right
-          li.appendChild(arrowIcon);
-
-          // Create folder icon
-          let folderIcon = document.createElement("i");
-          folderIcon.className = "folder-icon";
-          li.appendChild(folderIcon);
-
-          // Set folder title
-          let span = document.createElement("span");
-          span.textContent = node.title;
-          li.appendChild(span);
-
+          //li.className = 'list-item-folder';
+          li.innerHTML = `
+              <div class="list-container">
+                  <img class="icon-20px" alt="Toggle" src="img/Chevron.svg">
+                  <div class="item">
+                      <div class="favicon-wrapper">
+                          <img class="folder-icon" alt="Folder" src="img/folder_icon.png">
+                      </div>
+                      <div class="align-text">
+                          <div class="label">${node.title}</div>
+                      </div>
+                  </div>
+              </div>
+          `;
           // Add click event to toggle folder
-          li.addEventListener("click", function() {
-            event.stopPropagation();  // Prevents click events from propagating upwards
-            li.classList.toggle("open");
-      
-            // Toggle the arrow's direction and show/hide nested contents
-            ul.style.display = ul.style.display === "none" ? "block" : "none";
-            arrowIcon.classList.toggle("down");
+          const chevron = li.querySelector('.icon-20px');
+          let isExpanded = false;
+          chevron.addEventListener('click', function () {
+              isExpanded = !isExpanded;
+              li.querySelector('ul').style.display = isExpanded ? 'block' : 'none';
+              chevron.classList.toggle('down', isExpanded);
           });
 
           // Create the nested UL element with padding for indentation
@@ -46,20 +43,17 @@ export default class Bookmark {
           li.classList.add("bookmark");
 
           // Create favicon for bookmark
-          let favicon = document.createElement("i");
-          favicon.className = "favicon";
           let faviconUrl = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;
           //TODO: Fix can't load edge://favicon2 resource issue
           //let faviconUrl = `chrome://favicon/${node.url}`;
-          favicon.style.backgroundImage = `url(${faviconUrl})`;
-      
-          // Append favicon and title
-          li.appendChild(favicon);
-          let a = document.createElement("a");
-          a.href = node.url;
-          a.textContent = node.title;
-          a.target = "_blank";
-          li.appendChild(a);
+          li.innerHTML = `
+              <div class="list-container">
+                  <img class="icon-20px" alt="Favicon" src="${faviconUrl}">
+                  <div class="text2">
+                      <a class="list-item-text" href="${node.url}" title="${node.title}" target="_blank" rel="noreferrer">${node.title}</a>
+                  </div>
+              </div>
+          `;
         }
       
         parentElement.appendChild(li);
