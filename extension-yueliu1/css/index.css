@@ -148,6 +148,10 @@ li.open ul {
   color: #fff;
   font-family: 'Segoe UI';
 }
+button:active {
+  background-color: #0056b3;
+  transform: scale(0.95);
+}
 .container {
   height: 20px;
   display: flex;

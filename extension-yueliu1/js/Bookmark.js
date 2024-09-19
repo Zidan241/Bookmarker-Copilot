@@ -86,10 +86,10 @@ export default class Bookmark {
       btnApply: i18n.getMessage('btnApply'),
       appName: i18n.getMessage('appName'),
     }
-   document.getElementById('btnGenerate').innerText = this.i18n.btnGenerate;
-   document.getElementById('btnAdjust').innerText = this.i18n.btnAdjust;
-   document.getElementById('btnDiscard').innerText = this.i18n.btnDiscard;
-   document.getElementById('btnApply').innerText = this.i18n.btnApply;
+   document.getElementById('btnGenerate_text').innerText = this.i18n.btnGenerate;
+   document.getElementById('btnAdjust_text').innerText = this.i18n.btnAdjust;
+   document.getElementById('btnDiscard_text').innerText = this.i18n.btnDiscard;
+   document.getElementById('btnApply_text').innerText = this.i18n.btnApply;
    document.getElementById('appName').innerText = this.i18n.appName;
   }
 }
