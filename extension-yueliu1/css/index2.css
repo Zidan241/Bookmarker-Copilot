@@ -1,15 +1,12 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden; /* 防止body本身产生滚动 */
+  width: 600px;  /* Fixed width for popup */
+  height: 800px; /* Fixed height for popup */
+  margin: 0;
+  padding: 0;
 }
-
 #bookmarkTree {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto; /* 启用垂直滚动条 */
+    width: auto;
+    height: auto;
     box-sizing: border-box;
     padding: 10px;
 }
@@ -40,7 +37,7 @@ html, body {
   overflow: hidden;
   flex-shrink: 0;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease-in-out;
 }
 .icon-20px.down {
   transform: rotate(90deg);
@@ -253,21 +250,17 @@ html, body {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: 6px;
+  padding: 0px;
   gap: 4px;
 }
 .list-item-link {
   align-self: stretch;
   border-radius: 2px;
   height: 32px;
-  display: flex;
+  display: block;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-}
-.checkmark-control1 {
-  width: 16px;
-  height: 16px;
 }
 .folder-icon {
   width: 16px;
@@ -310,11 +303,32 @@ html, body {
   min-width: 32px;
   max-width: 146px;
 }
+
+ul {
+  list-style-type: none;
+  padding-left: 0;  /* No padding for root */
+  margin-left: 0;
+  width: 100%;
+}
+li {
+  display: block; /* Ensure each list item is a block element */
+  cursor: pointer;
+  position: relative;
+}
+
+ul ul {
+  padding-left: 16px;
+  display: none;
+}
+li.open ul {
+  display: block; /* Show children when folder is open */
+}
+
 .list-item-folder {
   align-self: stretch;
   border-radius: 2px;
   height: 32px;
-  display: flex;
+  display: block;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -323,9 +337,11 @@ html, body {
   font-family: 'Segoe UI Variable';
 }
 .list-item-folder > ul {
-  padding-left: 16px;
-  list-style-type: none;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
+
 .entertainment-mediainstagra {
   width: 16px;
   position: relative;
@@ -335,32 +351,33 @@ html, body {
 .top-section {
   align-self: stretch;
   border-radius: 4px;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   padding: 4px;
   gap: 2px;
+  height: auto;
 }
 .list-sections {
   align-self: stretch;
   border-radius: 4px;
   background-color: #fff;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 }
 .bookmarked-pages-and-folders {
-  width: 312px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   font-size: 14px;
   color: #424242;
+  height: auto;
 }
 .bottom-card-level {
   align-self: stretch;
@@ -379,7 +396,8 @@ html, body {
   border-radius: 8px;
   background-color: #fff;
   width: 100%;
-  overflow: hidden;
+  height: auto;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

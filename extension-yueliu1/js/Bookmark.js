@@ -8,14 +8,13 @@ export default class Bookmark {
 
     function buildBookmarkTree(bookmarkNodes, parentElement = document.getElementById('bookmarkTree')) {
       bookmarkNodes.forEach(function (node) {
-        let div;
+        let li;
         // Check if node is a folder or a bookmark
         if (node.children) {
-          div = document.createElement('div');
-          div.className = 'list-item-folder';
-          div.innerHTML = `
+          li = document.createElement('li');
+          li.className = 'list-item-folder';
+          li.innerHTML = `
               <div class="list-container">
-                  <div class="checkmark-control1"></div>
                   <img class="icon-20px" alt="Toggle" src="img/Chevron.svg">
                   <div class="item">
                       <div class="favicon-wrapper">
@@ -29,36 +28,29 @@ export default class Bookmark {
           `;
 
           // Add click event to toggle folder
-          const chevron = div.querySelector('.icon-20px');
+          const chevron = li.querySelector('.icon-20px');
           let isExpanded = false;
           chevron.addEventListener('click', function () {
-              const ul = div.querySelector('ul');
-              if (isExpanded) {
-                  chevron.src = 'img/Chevron.svg';
-                  ul.style.display = 'none';
-              } else {
-                  chevron.src = 'img/Chevron-down.svg';
-                  ul.style.display = 'block';
-              }
               isExpanded = !isExpanded;
+              li.querySelector('ul').style.display = isExpanded ? 'block' : 'none';
+              chevron.classList.toggle('down', isExpanded);
           });
-
+        
           // Create the nested UL element with padding for indentation
-          let ul = document.createElement("ul");
-          ul.style.display = "none"; // Initially hidden
-          div.appendChild(ul);
+          let nestedUl = document.createElement('ul');
+          nestedUl.style.display = "none"; // Initially hidden
+          li.appendChild(nestedUl);
 
           // Recursively build the tree for child nodes
-          buildBookmarkTree(node.children, ul);
+          buildBookmarkTree(node.children, nestedUl);
         } else {
           let faviconUrl = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;
           //TODO: Fix can't load edge://favicon2 resource issue
           //let faviconUrl = `chrome://favicon/${node.url}`;          
-          div = document.createElement('div');
-          div.className = 'list-item-link';
-          div.innerHTML = `
+          li = document.createElement('li');
+          li.className = 'list-item-link';        
+          li.innerHTML = `
               <div class="list-container">
-                  <div class="checkmark-control1"></div>
                   <img class="icon-20px" alt="Favicon" src="${faviconUrl}">
                   <div class="text2">
                       <a class="list-item-text" href="${node.url}" title="${node.title}" target="_blank" rel="noreferrer">${node.title}</a>
@@ -66,7 +58,7 @@ export default class Bookmark {
               </div>
           `;
         }
-        parentElement.appendChild(div);
+        parentElement.appendChild(li);
       });
     }
   }
