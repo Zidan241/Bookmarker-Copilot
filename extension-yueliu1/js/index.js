@@ -63,7 +63,7 @@ function createHightlightFolder(node){
   openParentFolder(node.parentId);
 
   let parent_element = document.getElementById(node.parentId);
-  parent_element.appendChild(li);
+  parent_li.querySelector('ul').appendChild(li);
 }
 
 function openParentFolder(parent_id){
@@ -94,10 +94,9 @@ function ScrollAndhighlight(node) {
   let li = document.createElement("li");
   //li.classList.add("highlight-folder");
   myBookmarkList.initUrlElement(li, node);
-  li.style.paddingLeft = 56 + "px";
   // Recursively expand the tree by parent_id
   openParentFolder(node.parentId);
 
   let parent_element = document.getElementById(node.parentId);
-  parent_element.appendChild(li);
+  parent_element.querySelector('ul').appendChild(li);
 }
