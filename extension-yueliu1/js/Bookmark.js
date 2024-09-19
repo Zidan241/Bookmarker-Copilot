@@ -63,9 +63,9 @@ export default class Bookmark {
   }
 
   initUrlElement(li, node) {
+    li.classList.add("bookmark");
     li.id = node.id;
     li.style.paddingLeft = 40 + "px";
-    li.classList.add("bookmark");
 
     // Create favicon for bookmark
     let faviconUrl = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;

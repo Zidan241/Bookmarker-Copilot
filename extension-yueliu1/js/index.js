@@ -69,11 +69,13 @@ function createHightlightFolder(node){
 function openParentFolder(parent_id){
   if(parent_id != '0'){
     let parent_li = document.getElementById(parent_id);
-    parent_li.querySelector('ul').style.display = 'block';
+    if(parent_li.querySelector('ul').style.display != 'block'){
+      parent_li.querySelector('ul').style.display = 'block';
+    }
     let chevron = parent_li.querySelector('.icon-20px');
     chevron.classList.toggle('down', true);
     chrome.bookmarks.get(parent_id, (parentNode) => {
-      openParentFolder(parentNode.parentId);
+      openParentFolder(parentNode[0].parentId);
     });
   }
 }
@@ -84,19 +86,18 @@ function addBookmarkToFolder(folderId, activeTab) {
         title: activeTab.title,
         url: activeTab.url
     }, (newBookmark) => {
-      ScrollAndhighlight(folderId);
+      ScrollAndhighlight(newBookmark, folderId);
     });
 }
 
-function ScrollAndhighlight(folderId) {
-//  let li = document.createElement("li");
-/*  chrome.bookmarks.getSubTree(folderId, (nodes) => {
-      if (nodes.length > 0) {
-          const folderNode = nodes[0];
-          chrome.bookmarks.getChildren(folderNode.id, (children) => {
-              console.log("Folder contents:", children);
-              alert(`Bookmark added to folder "${folderNode.title}" and folder expanded!`);
-          });
-      }
-  });*/
+function ScrollAndhighlight(node) {
+  let li = document.createElement("li");
+  //li.classList.add("highlight-folder");
+  myBookmarkList.initUrlElement(li, node);
+  li.style.paddingLeft = 56 + "px";
+  // Recursively expand the tree by parent_id
+  openParentFolder(node.parentId);
+
+  let parent_element = document.getElementById(node.parentId);
+  parent_element.appendChild(li);
 }
