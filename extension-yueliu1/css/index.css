@@ -1,23 +1,24 @@
 body {
-  width: 500px;  /* Fixed width for popup */
+  width: 400px;  /* Fixed width for popup */
   height: auto;
+  min-height: 600px;
   margin: 0;
-  overflow-y: auto; /* Enable vertical scroll if needed */
+  overflow-y:hidden;
 }
 
 #bookmarkTree {
-  padding: 0;
   margin: 0;
+  padding-top: 25px;
+  padding-bottom: 55px;
+  overflow-y: auto;
 }
 /* Basic header styling */
 header {
-  text-align: left;   /* left-align the text */
-  padding: 10px 20px;  /* Add some padding for spacing */
-  font-size: 16px;     /* Adjust the font size if needed */
-  font-weight: bold; /* Normal font weight */
-  color: black;        /* Set the text color to black */
-  background-color: transparent; /* No background color */
-  border-bottom: 1px solid #ddd; /* Optional: Add a bottom border for separation */
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  z-index: 1000; 
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 /* Link styling (header clickable) */
 header a {
@@ -91,7 +92,6 @@ li.open ul {
 .bookmark-copilot-extension {
   width: 100%;
   position: relative;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.14);
   border-radius: 8px;
   background-color: #fff;
   overflow: hidden;
@@ -100,6 +100,7 @@ li.open ul {
   align-items: flex-start;
   justify-content: flex-start;
   padding: 16px;
+  padding-left: 0px;
   box-sizing: border-box;
   gap: 8px;
   text-align: left;
@@ -114,6 +115,7 @@ li.open ul {
   align-items: center;
   justify-content: flex-start;
   gap: 4px;
+  padding: 10px;
 }
 .icon-bookmark-copilot {
   width: 20px;
@@ -145,6 +147,10 @@ li.open ul {
   font-size: 12px;
   color: #fff;
   font-family: 'Segoe UI';
+}
+button:active {
+  background-color: #0056b3;
+  transform: scale(0.95);
 }
 .container {
   height: 20px;
@@ -235,7 +241,7 @@ li.open ul {
   display: none;
 }
 .keep {
-  width: 400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -243,6 +249,14 @@ li.open ul {
   gap: 4px;
   color: #242424;
   font-family: 'Segoe UI';
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 .row {
   align-self: stretch;
@@ -389,10 +403,16 @@ li.open ul {
 }
 .label {
   position: relative;
+  font-size: 12px;
   line-height: 16px;
+  font-family: 'Segoe UI Variable';
+  color: rgba(0, 0, 0, 0.86);
+  text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
+  min-width: 0;
 }
 .align-text {
   display: flex;
@@ -423,4 +443,14 @@ li.open ul {
   gap: 4px;
   min-width: 32px;
   max-width: 146px;
+}
+.list-item-text {
+  position: relative;
+  line-height: 20px;
+  text-decoration: none;
+  color: black;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  min-width: 0;
 }

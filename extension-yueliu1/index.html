@@ -1,116 +1,91 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1, width=device-width">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/index.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe UI Variable:wght@400;600&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe UI:wght@400;600&display=swap" />
+  <title>Bookmark Copilot</title>
 </head>
 <body>
-  <div class="bookmark-copilot-extension">
+  <header class="header">
     <div class="title-row">
         <img class="icon-bookmark-copilot" alt="" src="img/icon40.png">
-        
         <div class="title">
-            <div class="placeholder-text">Bookmark Copilot</div>
+            <div class="placeholder-text" id="appName">Bookmark Copilot</div>
         </div>
-        <div class="button">
-          <div class="container">
-              <div class="text-wrapper-for-offset">
-                  <div class="text">Smart organize</div>
-              </div>
-              <img class="chevron-icon" alt="" src="img/Chevron-down.svg">
-              
-          </div>
-      </div>
+        <div class="button" id="smartOrganizeBtn">
+            <div class="container">
+                <div class="text-wrapper-for-offset">
+                    <div class="text">Smart organize</div>
+                </div>
+                <img class="chevron-icon" alt="" src="img/Chevron-white.svg">
+            </div>
+        </div>
     </div>
+  </header>
+
+  <div class="bookmark-copilot-extension">
     <div class="bottom-card-level">
-      <div class="subtitle">
-          <div class="title">
-              <div class="card-string">
-                  <div class="string">Use Bookmark Copilot to organize all your favorite websites easier!</div>
-              </div>
-              <div class="card-string1">
-              </div>
-              <div class="card-string2">
-              </div>
-          </div>
-      </div>
-      <div class="prompt-starter">
-      </div>
       <div id="bookmarkTree"></div>
       <div class="keep">
         <div class="row">
             <div class="text-wrapper-for-offset">
-                <div class="carousel">
-                    <div class="button1">
+                <!--div class="carousel">
+                    <div class="button1"">
                         <img class="star-icon" alt="" src="img/Chevron-left.svg">
-                        
                     </div>
                     <div class="step-count">
                         <div class="text">1 of 2</div>
                     </div>
                     <div class="feedback-iconsthumb-uprest">
                         <img class="star-icon" alt="" src="img/Chevron.svg">
-                        
                     </div>
-                </div>
+                </div-->
             </div>
             <div class="feedback-and-disclaimer">
                 <div class="disclaimer">AI-generated content may be incorrect</div>
                 <div class="text-wrapper-for-offset">
-                    <div class="text-wrapper-for-offset">
-                        <div class="feedback-iconsthumb-uprest">
-                            <img class="star-icon" alt="" src="img/Like.png">
-                            
-                        </div>
+                    <div class="feedback-iconsthumb-uprest" id="btnLike">
+                        <img class="star-icon" alt="" src="img/Like.png">
                     </div>
-                    <div class="text-wrapper-for-offset">
-                        <div class="feedback-iconsthumb-uprest">
-                            <img class="star-icon" alt="" src="img/Dislike.png">
-                            
-                        </div>
+                    <div class="feedback-iconsthumb-uprest" id="btnDislike">
+                        <img class="star-icon" alt="" src="img/Dislike.png">
                     </div>
                 </div>
             </div>
         </div>
         <div class="toolbar">
             <div class="container1">
-                <div class="button3">
+                <div class="button3" id="btnApply">
                     <img class="star-icon" alt="" src="img/Keep.svg">
-                    
                     <div class="text-wrapper-for-offset1">
-                        <div class="text">Keep it</div>
+                        <div class="text" id="btnApply_text">Keep it</div>
                     </div>
                 </div>
-                <div class="button4">
+                <div class="button4" id="btnGenerate">
                     <img class="star-icon" alt="" src="img/Regenerate.svg">
-                    
                     <div class="text-wrapper-for-offset1">
-                        <div class="text">Regenerate</div>
+                        <div class="text" id="btnGenerate_text">Regenerate</div>
                     </div>
                 </div>
-                <div class="button4">
+                <div class="button4" id="btnAdjust">
                     <img class="star-icon" alt="" src="img/Adjust.svg">
-                    
                     <div class="text-wrapper-for-offset1">
-                        <div class="text">Adjust</div>
+                        <div class="text" id="btnAdjust_text">Adjust</div>
                     </div>
                 </div>
-                <div class="button4">
+                <div class="button4" id="btnDiscard">
                     <img class="star-icon" alt="" src="img/Discard.svg">
-                    
                     <div class="text-wrapper-for-offset1">
-                        <div class="text">Discard</div>
-                      </div>
+                        <div class="text" id="btnDiscard_text">Discard</div>
                     </div>
                 </div>
             </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+
   <script src="lib/jquery-3.7.1.min.js"></script>
   <script type="module" src="js/index.js"></script>
 </body>
