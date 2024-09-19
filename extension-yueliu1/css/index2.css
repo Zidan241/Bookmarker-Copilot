@@ -39,6 +39,11 @@ html, body {
   height: 20px;
   overflow: hidden;
   flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.icon-20px.down {
+  transform: rotate(90deg);
 }
 .button {
   border-radius: 4px;
@@ -316,6 +321,10 @@ html, body {
   font-size: 12px;
   color: rgba(0, 0, 0, 0.86);
   font-family: 'Segoe UI Variable';
+}
+.list-item-folder > ul {
+  padding-left: 16px;
+  list-style-type: none;
 }
 .entertainment-mediainstagra {
   width: 16px;
