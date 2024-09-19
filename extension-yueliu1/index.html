@@ -9,37 +9,25 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe UI:wght@400;600&display=swap" />
 </head>
 <body>
-  <div class="bookmark-copilot-extension">
+  <header class="header">
     <div class="title-row">
         <img class="icon-bookmark-copilot" alt="" src="img/icon40.png">
         
         <div class="title">
-            <div class="placeholder-text">Bookmark Copilot</div>
+            <div class="placeholder-text" id="appName">Bookmark Copilot</div>
         </div>
         <div class="button">
-          <div class="container">
-              <div class="text-wrapper-for-offset">
-                  <div class="text">Smart organize</div>
-              </div>
-              <img class="chevron-icon" alt="" src="img/Chevron-down.svg">
-              
-          </div>
-      </div>
-    </div>
+            <div class="container">
+                <div class="text-wrapper-for-offset">
+                    <div class="text">Smart organize</div>
+                </div>
+                <img class="chevron-icon" alt="" src="img/Chevron-white.svg">
+            </div>
+        </div>
+        </div>
+  </header>
+  <div class="bookmark-copilot-extension">
     <div class="bottom-card-level">
-      <div class="subtitle">
-          <div class="title">
-              <div class="card-string">
-                  <div class="string">Use Bookmark Copilot to organize all your favorite websites easier!</div>
-              </div>
-              <div class="card-string1">
-              </div>
-              <div class="card-string2">
-              </div>
-          </div>
-      </div>
-      <div class="prompt-starter">
-      </div>
       <div id="bookmarkTree"></div>
       <div class="keep">
         <div class="row">
@@ -82,28 +70,28 @@
                     <img class="star-icon" alt="" src="img/Keep.svg">
                     
                     <div class="text-wrapper-for-offset1">
-                        <div class="text">Keep it</div>
+                        <div class="text" id=btnApply>Keep it</div>
                     </div>
                 </div>
                 <div class="button4">
                     <img class="star-icon" alt="" src="img/Regenerate.svg">
                     
                     <div class="text-wrapper-for-offset1">
-                        <div class="text">Regenerate</div>
+                        <div class="text" id=btnGenerate>Regenerate</div>
                     </div>
                 </div>
                 <div class="button4">
                     <img class="star-icon" alt="" src="img/Adjust.svg">
                     
                     <div class="text-wrapper-for-offset1">
-                        <div class="text">Adjust</div>
+                        <div class="text" id=btnAdjust>Adjust</div>
                     </div>
                 </div>
                 <div class="button4">
                     <img class="star-icon" alt="" src="img/Discard.svg">
                     
                     <div class="text-wrapper-for-offset1">
-                        <div class="text">Discard</div>
+                        <div class="text" id=btnDiscard>Discard</div>
                       </div>
                     </div>
                 </div>

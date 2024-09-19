@@ -3,11 +3,9 @@ export default class Bookmark {
     document.addEventListener('DOMContentLoaded', function() {
       function createTree(node, parentElement) {
         let li = document.createElement("li");
-
-        li.style.paddingLeft = 16 + "px";
-
         // Check if node is a folder or a bookmark
         if (node.children) {
+          li.style.paddingLeft = 16 + "px";
           li.classList.add("folder");
           //li.className = 'list-item-folder';
           li.innerHTML = `
@@ -23,10 +21,12 @@ export default class Bookmark {
                   </div>
               </div>
           `;
+
           // Add click event to toggle folder
-          const chevron = li.querySelector('.icon-20px');
+          let listContainer = li.querySelector('.list-container');
+          let chevron = li.querySelector('.icon-20px');
           let isExpanded = false;
-          chevron.addEventListener('click', function () {
+          listContainer.addEventListener('click', function () {
               isExpanded = !isExpanded;
               li.querySelector('ul').style.display = isExpanded ? 'block' : 'none';
               chevron.classList.toggle('down', isExpanded);
@@ -40,6 +40,7 @@ export default class Bookmark {
           // Recursively build the tree for child nodes
           node.children.forEach((child) => createTree(child, ul));
         } else {
+          li.style.paddingLeft = 40 + "px";
           li.classList.add("bookmark");
 
           // Create favicon for bookmark
@@ -54,8 +55,13 @@ export default class Bookmark {
                   </div>
               </div>
           `;
+          let listContainer = li.querySelector('.list-container');
+          let link = li.querySelector('a');
+          listContainer.addEventListener('click', () => {
+            link.click();
+          });
         }
-      
+
         parentElement.appendChild(li);
       }
       // Fetch the bookmarks and build the tree
@@ -66,7 +72,6 @@ export default class Bookmark {
         rootChildren.forEach((rootChild) => {
           createTree(rootChild, treeContainer);
         });
-        //this.bindEventListener();
       });
     });
     this.initI18n()
@@ -75,20 +80,16 @@ export default class Bookmark {
   initI18n() {
     let i18n = chrome.i18n
     this.i18n = {
-      btnAdd: i18n.getMessage('btnAdd'),
       btnGenerate: i18n.getMessage('btnGenerate'),
-      btnRegenerate: i18n.getMessage('btnRegenerate'),
       btnAdjust: i18n.getMessage('btnAdjust'),
       btnDiscard: i18n.getMessage('btnDiscard'),
       btnApply: i18n.getMessage('btnApply'),
-      inputBoxTitle: i18n.getMessage('inputBoxTitle'),
       appName: i18n.getMessage('appName'),
     }
-    $('.btnAdd').val(this.i18n.btnAdd)
-    $('.btnGenerate').val(this.i18n.btnGenerate)
-    $('.btnRegenerate').val(this.i18n.btnRegenerate)
-    $('.btnAdjust').val(this.i18n.btnAdjust)
-    $('.btnDiscard').text(this.i18n.btnDiscard)
-    $('.btnApply').text(this.i18n.btnApply)
+   document.getElementById('btnGenerate').innerText = this.i18n.btnGenerate;
+   document.getElementById('btnAdjust').innerText = this.i18n.btnAdjust;
+   document.getElementById('btnDiscard').innerText = this.i18n.btnDiscard;
+   document.getElementById('btnApply').innerText = this.i18n.btnApply;
+   document.getElementById('appName').innerText = this.i18n.appName;
   }
 }
