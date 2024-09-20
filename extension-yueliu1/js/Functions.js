@@ -39,7 +39,7 @@ async function generateModelInputHelper(obj, path, result) {
 
 export async function getMostSuitableFolder(url, title) {
     // Configuration
-    const API_KEY = "64e59578582e42fb856999e1e656f5c7";
+    const API_KEY = "API_KEY";
     const headers = {
         "Content-Type": "application/json",
         "api-key": API_KEY,
