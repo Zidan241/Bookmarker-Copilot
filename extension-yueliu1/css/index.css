@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding-top: 25px;
   padding-bottom: 55px;
-  overflow-y: auto;
+  overflow: auto;
 }
 /* Basic header styling */
 header {
@@ -196,6 +196,8 @@ button:active {
   gap: 12px;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.56);
+  overflow: auto;
+  margin-bottom: 60px;
 }
 .subtitle {
   width: 400px;
