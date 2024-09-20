@@ -28,8 +28,7 @@ $(document).ready(function() {
 });
 
 let myBookmarkList = new Bookmark();
-//addCurrentTab();
-addActiveTabToBookmarks();
+addCurrentTab();
 
 function addCurrentTab() {
   //const folderName = "Suggested Folder"; //Or suggested id?
