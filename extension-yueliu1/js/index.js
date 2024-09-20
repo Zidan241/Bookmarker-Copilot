@@ -63,7 +63,15 @@ function createHightlightFolder(node){
   openParentFolder(node.parentId);
 
   let parent_element = document.getElementById(node.parentId);
-  parent_li.querySelector('ul').appendChild(li);
+  parent_element.querySelector('ul').appendChild(li);
+
+  li.classList.add('highlight');
+  setTimeout(() => {
+    li.classList.remove('highlight');
+  }, 5000);
+  requestAnimationFrame(() => {
+    li.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
 }
 
 function openParentFolder(parent_id){
@@ -99,4 +107,12 @@ function ScrollAndhighlight(node) {
 
   let parent_element = document.getElementById(node.parentId);
   parent_element.querySelector('ul').appendChild(li);
+
+  li.classList.add('highlight');
+  setTimeout(() => {
+    li.classList.remove('highlight');
+  }, 5000);
+  requestAnimationFrame(() => {
+    li.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
 }
