@@ -1,4 +1,5 @@
 import Bookmark from './Bookmark.js'
+import { getMostSuitableFolder } from './Functions.js'
 $(document).ready(function() {
   $('#smartOrganizeBtn').click(function() {
     console.log('Smart organize button clicked');
@@ -28,6 +29,7 @@ $(document).ready(function() {
 
 let myBookmarkList = new Bookmark();
 addCurrentTab();
+getMostSuitableFolder()
 
 function addCurrentTab() {
   //const folderName = "Suggested Folder"; //Or suggested id?
