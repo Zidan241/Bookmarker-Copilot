@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding-top: 25px;
   padding-bottom: 55px;
-  overflow-y: auto;
+  overflow: auto;
 }
 /* Basic header styling */
 header {
@@ -37,6 +37,8 @@ ul {
   list-style-type: none;
   padding-left: 0;  /* No padding for root */
   margin-left: 0;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 li {
@@ -194,6 +196,8 @@ button:active {
   gap: 12px;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.56);
+  overflow: auto;
+  margin-bottom: 60px;
 }
 .subtitle {
   width: 400px;
@@ -427,7 +431,7 @@ button:active {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: 0px;
+  padding: 4px 4px;
   gap: 4px;
 }
 .item {
@@ -453,4 +457,8 @@ button:active {
   white-space: nowrap;
   overflow: hidden;
   min-width: 0;
+}
+.highlight {
+  background-color: #d9d9d9;;
+  transition: background-color 0.5s ease;
 }
