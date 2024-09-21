@@ -91,13 +91,13 @@ export async function getMostSuitableFolder(url, title) {
     }
 }
 
-export async function addActiveTabToBookmarks () {
+export async function addActiveTabToBookmarks (bookmarkList) {
     const activeTab = await getCurrentActiveTab();
     const folderArr = await getMostSuitableFolder(activeTab.url, activeTab.title);
     console.log(folderArr);
     var bookmarks = (await fetchBookmarks())[0].children;
     console.log(bookmarks);
-    var folderIdSoFar = "0";
+    var folderIdSoFar = "1"; // default folder id should be bookmark bar
     // for loop instead of search to handel more complex folder structures
     for (var i in folderArr) {
         var folderFound = false;
@@ -113,9 +113,11 @@ export async function addActiveTabToBookmarks () {
         }
         if (!folderFound) {
             const newFolder = await addBookmark(folderArr[i], null, folderIdSoFar);
+            bookmarkList.createHightlightFolder(newFolder);
             folderIdSoFar = newFolder.id;
             bookmarks = [];
         }
     }
-    addBookmark(activeTab.title, activeTab.url, folderIdSoFar)
+    const newBookmark = await addBookmark(activeTab.title, activeTab.url, folderIdSoFar);
+    bookmarkList.ScrollAndhighlight(newBookmark);
 }
