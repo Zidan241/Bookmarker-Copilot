@@ -4,22 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/index.css" />
-  <title>Bookmark Copilot</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe UI Variable:wght@400;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe UI:wght@400&display=swap" />  
+  <title>Favorites Copilot</title>
 </head>
 <body>
   <header class="header">
     <div class="title-row">
         <img class="icon-bookmark-copilot" alt="" src="img/icon40.png">
         <div class="title">
-            <div class="placeholder-text" id="appName">Bookmark Copilot</div>
+            <div class="placeholder-text" id="appName">Favorites Copilot</div>
         </div>
-        <div class="button" id="smartOrganizeBtn">
-            <div class="container">
-                <div class="text-wrapper-for-offset">
-                    <div class="text">Smart organize</div>
+        <div class="dropdown-container">
+            <div class="button" id="copilotBtn">
+                <div class="container">
+                    <img class="icon-favorites-copilot" alt="" src="img/Copilot.svg">
+                    <img class="chevron-icon" alt="" src="img/Chevron-down.svg">
                 </div>
-                <img class="chevron-icon" alt="" src="img/Chevron-white.svg">
             </div>
+            <ul class="menu-list" id="dropdownMenu">
+                <li class="menu-list-item" id="btnReorganize">
+                    <div class="menu-list-container"">
+                            <img class="wand-icon" alt="" src="img/Wand.svg">
+                            <div class="menu-list-text">
+                                <div class="menu-list-item-text">Reorganize my Favorites</div>
+                            </div>
+                    </div>
+                </li>
+                <li class="menu-list-item" id="btnAddToFolder">
+                    <div class="menu-list-container">
+                            <img class="icon-star-sparkles" alt="" src="img/Icon_Star sparkles.svg">
+                            <div class="menu-list-text">
+                                <div class="menu-list-item-text">Add to most suitable folder</div>
+                            </div>
+                    </div>
+                </li>
+                <li class="menu-list-item" id="btnSearch">
+                    <div class="menu-list-container">
+                            <img class="wand-icon" alt="" src="img/Search.svg">
+                            <div class="menu-list-text">
+                                <div class="menu-list-item-text">Search and add a visited page</div>
+                            </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
   </header>
