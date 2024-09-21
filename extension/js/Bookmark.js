@@ -101,4 +101,60 @@ export default class Bookmark {
    document.getElementById('btnApply_text').innerText = this.i18n.btnApply;
    document.getElementById('appName').innerText = this.i18n.appName;
   }
+
+  createHightlightFolder(node){
+      let li = document.createElement("li");
+      this.InitFolderElement(li, node);
+      // Create the nested UL element
+      let ul = document.createElement("ul");
+      ul.style.display = "none"; // Initially hidden
+      li.appendChild(ul);
+
+      // Recursively expand the tree by parent_id
+      this.openParentFolder(node.parentId);
+    
+      let parent_element = document.getElementById(node.parentId);
+      parent_element.querySelector('ul').appendChild(li);
+    
+      li.classList.add('highlight');
+      setTimeout(() => {
+        li.classList.remove('highlight');
+      }, 10000);
+      /* No need to scroll to the new folder, will scroll to the new bookmark later
+      requestAnimationFrame(() => {
+        li.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });*/
+  }
+    
+  openParentFolder(parent_id){
+      if(parent_id != '0'){
+          let parent_li = document.getElementById(parent_id);
+          if(parent_li.querySelector('ul').style.display != 'block'){
+          parent_li.querySelector('ul').style.display = 'block';
+          }
+          let chevron = parent_li.querySelector('.icon-20px');
+          chevron.classList.toggle('down', true);
+          chrome.bookmarks.get(parent_id, (parentNode) => {
+            this.openParentFolder(parentNode[0].parentId);
+          });
+      }
+  }
+
+  ScrollAndhighlight(node) {
+      let li = document.createElement("li");
+      this.initUrlElement(li, node);
+      // Recursively expand the tree by parent_id
+      this.openParentFolder(node.parentId);
+    
+      let parent_element = document.getElementById(node.parentId);
+      parent_element.querySelector('ul').appendChild(li);
+    
+      li.classList.add('highlight');
+      setTimeout(() => {
+        li.classList.remove('highlight');
+      }, 5000);
+      requestAnimationFrame(() => {
+        li.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+  }
 }
