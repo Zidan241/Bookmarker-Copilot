@@ -14,7 +14,7 @@
       "24": "img/icon24.png",
       "40": "img/icon40.png"
     },
-    "default_title": "Bookmark Copilot",
+    "default_title": "Favorites Copilot",
     "default_popup": "index.html"
   },
   "content_security_policy": {

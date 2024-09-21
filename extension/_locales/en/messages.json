@@ -1,9 +1,9 @@
 {
   "appName": {
-    "message": "Bookmark Copilot"
+    "message": "Favorites Copilot"
   },
   "appDesc": {
-    "message": "Organize your bookmarks with copilot"
+    "message": "Organize your favorites with copilot"
   },
   "btnAdd": {
     "message":"AddCurrentPage"
