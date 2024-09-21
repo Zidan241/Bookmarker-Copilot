@@ -154,7 +154,7 @@ export default class Bookmark {
         li.classList.remove('highlight');
       }, 5000);
       requestAnimationFrame(() => {
-        li.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        li.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
       });
   }
 }

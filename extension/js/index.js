@@ -1,4 +1,4 @@
-import { Bookmark } from './Bookmark.js'
+import Bookmark from './Bookmark.js'
 import { addActiveTabToBookmarks } from './Functions.js'
 $(document).ready(function() {
   $('#smartOrganizeBtn').click(function() {
