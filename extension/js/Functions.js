@@ -37,7 +37,7 @@ async function generateModelInputHelper(obj, path, result) {
     }
 }
 
-export async function getMostSuitableFolder(url, title) {
+export async function getMostSuitableFolder(url, title, permanentNodes) {
     // Configuration
     const API_KEY = "API_KEY";
     const headers = {
@@ -85,15 +85,34 @@ export async function getMostSuitableFolder(url, title) {
             headers: headers
         });
         const responseJson = await response.json();
+        const pNodes = await permanentNodes;
+        for(const value of pNodes){
+            const resultArray = extractAndSplit(responseJson.choices[0].message.content, value.title);
+            if(resultArray.length > 0)
+                return resultArray;
+        }
         return responseJson.choices[0].message.content.split('>').map(e=>e.trim());
     } catch(error){
         console.log(error.message);
     }
 }
 
+function extractAndSplit(inputString, keyword) {
+    const regex = new RegExp(`${keyword} > [^"\n]*`);
+    const match = inputString.match(regex);
+    if (match) {
+        let resultString = match[0].replace(/["\n*]/g, '');
+        let resultList = resultString.split(' > ');
+        return resultList;
+    } else {
+        return [];
+    }
+}
+
 export async function addActiveTabToBookmarks (bookmarkList) {
     const activeTab = await getCurrentActiveTab();
-    const folderArr = await getMostSuitableFolder(activeTab.url, activeTab.title);
+    const permanentNodes = chrome.bookmarks.getChildren("0");
+    const folderArr = await getMostSuitableFolder(activeTab.url, activeTab.title, permanentNodes);
     console.log(folderArr);
     var bookmarks = (await fetchBookmarks())[0].children;
     console.log(bookmarks);
