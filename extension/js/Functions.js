@@ -37,7 +37,7 @@ async function generateModelInputHelper(obj, path, result) {
     }
 }
 
-export async function getMostSuitableFolder(url, title) {
+export async function getMostSuitableFolder(url, title, permanentNodes) {
     // Configuration
     const API_KEY = "API_KEY";
     const headers = {
@@ -47,6 +47,7 @@ export async function getMostSuitableFolder(url, title) {
 
     // Payload for the request
     const modelInput = await generateModelInput(); 
+    updateProgress(25);  // Get response, progress is 25%
     const body = 
         `Below is a bookmark list. For each Url We have the RootFolder and the the SubFolders that it is in if it is in a SubFolder Given this Url and it's Title Where should this Url be placed in this bookmark file system Output the path of where it will be placed. If the current file structure is not suitable suggest a new folder to put the new url in. Return **only** the folder path in the following format RootFolder > SubFolder 1 > ... .
         <Domain>${url}</URL><Title>${title}</Tiltle>
@@ -84,17 +85,42 @@ export async function getMostSuitableFolder(url, title) {
             body: JSON.stringify(payload),
             headers: headers
         });
+        updateProgress(50);  // Get response, progress is 50%
         const responseJson = await response.json();
+        const pNodes = await permanentNodes;
+        updateProgress(75);  // Get json, progress is 75%
+        for(const value of pNodes){
+            const resultArray = extractAndSplit(responseJson.choices[0].message.content, value.title);
+            if(resultArray.length > 0)
+                return resultArray;
+        }
         return responseJson.choices[0].message.content.split('>').map(e=>e.trim());
     } catch(error){
         console.log(error.message);
     }
 }
 
+function extractAndSplit(inputString, keyword) {
+    const regex = new RegExp(`${keyword} > [^"\n]*`);
+    const match = inputString.match(regex);
+    if (match) {
+        let resultString = match[0].replace(/["\n*]/g, '');
+        let resultList = resultString.split(' > ');
+        return resultList;
+    } else {
+        return [];
+    }
+}
+
 export async function addActiveTabToBookmarks (bookmarkList) {
+    let newAddedBookmark = [];
+    updateProgress(5);  // Start, progress is 5%
     const activeTab = await getCurrentActiveTab();
-    const folderArr = await getMostSuitableFolder(activeTab.url, activeTab.title);
+    updateProgress(10);  // Get tab, progress is 10%
+    const permanentNodes = chrome.bookmarks.getChildren("0");
+    const folderArr = await getMostSuitableFolder(activeTab.url, activeTab.title, permanentNodes);
     console.log(folderArr);
+    updateProgress(90);  // Return folder path, progress is 90%
     var bookmarks = (await fetchBookmarks())[0].children;
     console.log(bookmarks);
     var folderIdSoFar = "1"; // default folder id should be bookmark bar
@@ -104,7 +130,7 @@ export async function addActiveTabToBookmarks (bookmarkList) {
         for (var j in bookmarks) {
             console.log(folderArr[i]);
             console.log(bookmarks[j].title);
-            if (bookmarks[j].title === folderArr[i]) {
+            if (bookmarks[j].children && bookmarks[j].title === folderArr[i]) {
                 folderFound = true;
                 folderIdSoFar = bookmarks[j].id
                 bookmarks = bookmarks[j].children;
@@ -113,11 +139,22 @@ export async function addActiveTabToBookmarks (bookmarkList) {
         }
         if (!folderFound) {
             const newFolder = await addBookmark(folderArr[i], null, folderIdSoFar);
+            // append new folder id to newAddedBookmark array
+            newAddedBookmark.push(newFolder.id);
             bookmarkList.createHightlightFolder(newFolder);
             folderIdSoFar = newFolder.id;
             bookmarks = [];
         }
     }
+    updateProgress(100);  // progress is 100%
     const newBookmark = await addBookmark(activeTab.title, activeTab.url, folderIdSoFar);
+    // append new url id to newAddedBookmark array
+    newAddedBookmark.push(newBookmark.id);
     bookmarkList.ScrollAndhighlight(newBookmark);
+    return newAddedBookmark;
+}
+
+function updateProgress(percentage) {
+    const progressBar = document.querySelector('.track');
+    progressBar.style.width = percentage + '%'; // Set width based on the progress percentage
 }
