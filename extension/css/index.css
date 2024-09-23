@@ -547,3 +547,126 @@ li.open ul {
 .menu-list.show {
   display: block;
 }
+.output-header {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 0;
+}
+.output-loader {
+  align-self: stretch;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.14), 0px 0px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  background-color: #fafafa;
+  overflow: hidden;
+  display: none;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 6px 8px 10px;
+  position: absolute;
+  gap: 8px;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+  width: auto;
+  white-space: nowrap;
+}
+.output-loader.show {
+  display: block;
+}
+.output-icon-title {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.output-title {
+  position: relative;
+  line-height: 16px;
+  font-weight: 600;
+}
+.output-button {
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  gap: 4px;
+  color: #424242;
+}
+.square-dismiss-icon {
+  width: 20px;
+  position: relative;
+  height: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.text-wrapper-for-offset.output {
+  padding: 0px 0px 2px;
+}
+.badge {
+  border-radius: 2px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  height: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 4px;
+  text-align: center;
+  font-size: 10px;
+  color: #616161;
+}
+.text-wrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.output-text {
+  position: relative;
+  line-height: 14px;
+  font-weight: 600;
+}
+.spacer-for-min-width {
+  width: 12px;
+  position: relative;
+  height: 1px;
+}
+.static-progressbar {
+  width: 100%;
+  margin: 0 !important;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: #e6e6e6;
+  border: 1px solid rgba(255, 255, 255, 0);
+  box-sizing: border-box;
+  height: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 1;
+}
+.track {
+  width: 0px;
+  height: 100%;
+  position: relative;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #464feb 35%, #47cffa 70%, #b47cf8 92%);
+  overflow: hidden;
+  transition: width 1s ease;
+}

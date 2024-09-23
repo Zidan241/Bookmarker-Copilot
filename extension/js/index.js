@@ -25,6 +25,7 @@ $(document).ready(function() {
   // Get the button and menu elements
   const copilotBtn = document.getElementById('copilotBtn');
   const dropdownMenu = document.getElementById('dropdownMenu');
+  const generateOutputView = document.getElementById('generateOutputView');
 
   // Toggle dropdown visibility on button click
   copilotBtn.addEventListener('click', () => {
@@ -52,7 +53,13 @@ $(document).ready(function() {
           case 'btnReorganize':
             break;
           case 'btnAddToFolder':
-            addActiveTabToBookmarks(bookmarkList);
+            generateOutputView.classList.add('show');
+            addActiveTabToBookmarks(bookmarkList).then(() => {
+              setTimeout(() => {
+                // Show 100% progress then hide the output view
+                generateOutputView.classList.remove('show');
+              }, 1000);
+            });
             break;
           case 'btnSearch':
             break;
@@ -60,6 +67,26 @@ $(document).ready(function() {
       }
     });
   });  
+
+  // Listen for clicks on dropdown items
+  const generateOutput = document.querySelectorAll('.output-loader');
+/*  generateOutput.forEach(item => {
+    item.addEventListener('click', (event) => {
+      if (!item.classList.contains('disabled')) {
+        console.log(`${item.textContent} clicked`);
+        dropdownMenu.classList.remove('show');  // Close the dropdown after selection
+        switch (item.id) {
+          case 'btnReorganize':
+            break;
+          case 'btnAddToFolder':
+            addActiveTabToBookmarks(bookmarkList);
+            break;
+          case 'btnSearch':
+            break;
+        }
+      }
+    });
+  });  */
 });
 
 let bookmarkList = new Bookmark();

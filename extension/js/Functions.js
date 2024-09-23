@@ -39,7 +39,7 @@ async function generateModelInputHelper(obj, path, result) {
 
 export async function getMostSuitableFolder(url, title, permanentNodes) {
     // Configuration
-    const API_KEY = "API_KEY";
+    const API_KEY = "9ae87384260c4ff285902f332abf9386";
     const headers = {
         "Content-Type": "application/json",
         "api-key": API_KEY,
@@ -47,6 +47,7 @@ export async function getMostSuitableFolder(url, title, permanentNodes) {
 
     // Payload for the request
     const modelInput = await generateModelInput(); 
+    updateProgress(25);  // Get response, progress is 25%
     const body = 
         `Below is a bookmark list. For each Url We have the RootFolder and the the SubFolders that it is in if it is in a SubFolder Given this Url and it's Title Where should this Url be placed in this bookmark file system Output the path of where it will be placed. If the current file structure is not suitable suggest a new folder to put the new url in. Return **only** the folder path in the following format RootFolder > SubFolder 1 > ... .
         <Domain>${url}</URL><Title>${title}</Tiltle>
@@ -84,8 +85,10 @@ export async function getMostSuitableFolder(url, title, permanentNodes) {
             body: JSON.stringify(payload),
             headers: headers
         });
+        updateProgress(50);  // Get response, progress is 50%
         const responseJson = await response.json();
         const pNodes = await permanentNodes;
+        updateProgress(75);  // Get json, progress is 75%
         for(const value of pNodes){
             const resultArray = extractAndSplit(responseJson.choices[0].message.content, value.title);
             if(resultArray.length > 0)
@@ -110,10 +113,13 @@ function extractAndSplit(inputString, keyword) {
 }
 
 export async function addActiveTabToBookmarks (bookmarkList) {
+    updateProgress(5);  // Start, progress is 5%
     const activeTab = await getCurrentActiveTab();
+    updateProgress(10);  // Get tab, progress is 10%
     const permanentNodes = chrome.bookmarks.getChildren("0");
     const folderArr = await getMostSuitableFolder(activeTab.url, activeTab.title, permanentNodes);
     console.log(folderArr);
+    updateProgress(90);  // Return folder path, progress is 90%
     var bookmarks = (await fetchBookmarks())[0].children;
     console.log(bookmarks);
     var folderIdSoFar = "1"; // default folder id should be bookmark bar
@@ -137,6 +143,12 @@ export async function addActiveTabToBookmarks (bookmarkList) {
             bookmarks = [];
         }
     }
+    updateProgress(100);  // progress is 100%
     const newBookmark = await addBookmark(activeTab.title, activeTab.url, folderIdSoFar);
     bookmarkList.ScrollAndhighlight(newBookmark);
+}
+
+function updateProgress(percentage) {
+    const progressBar = document.querySelector('.track');
+    progressBar.style.width = percentage + '%'; // Set width based on the progress percentage
 }
