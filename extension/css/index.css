@@ -171,6 +171,10 @@ li.open ul {
   position: relative;
   line-height: 16px;
 }
+.text.disabled {
+  color: #cccccc;
+  pointer-events: none;
+}
 .text-wrapper-for-offset1 {
   display: flex;
   flex-direction: row;
@@ -341,11 +345,14 @@ li.open ul {
   border-radius: 8px;
   background-color: #fff;
   border: 2px solid #464feb;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   padding: 8px;
+}
+.toolbar.show {
+  display: block;
 }
 .container1 {
   align-self: stretch;
@@ -368,6 +375,9 @@ li.open ul {
   cursor: pointer;
   color: #fff;
 }
+.button3.disabled {
+  pointer-events: none;
+}
 .button4 {
   border-radius: 4px;
   background-color: #fff;
@@ -380,6 +390,9 @@ li.open ul {
   padding: 2px 8px;
   gap: 4px;
   cursor: pointer;
+}
+.button4.disabled {
+  pointer-events: none;
 }
 .list-item-folder {
   align-self: stretch;
