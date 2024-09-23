@@ -26,6 +26,7 @@ $(document).ready(function() {
   const dropdownItems = document.querySelectorAll('.menu-list-item');
   const generateOutputView = document.getElementById('generateOutputView');
   const toolbar = document.getElementsByClassName('toolbar')[0];
+  var idArrary = [];
   $('#btnApply').click(function() {
     toolbar.classList.remove('show');
   });
@@ -36,6 +37,9 @@ $(document).ready(function() {
     console.log('Like button clicked');
   });
   $('#btnDiscard').click(function() {
+    while (idArrary.length > 0) {
+      bookmarkList.removeBookmarkNode(idArrary.pop());
+    }
     toolbar.classList.remove('show');
   });
   dropdownItems.forEach(item => {
@@ -51,7 +55,8 @@ $(document).ready(function() {
             break;
           case 'btnAddToFolder':
             generateOutputView.classList.add('show');
-            addActiveTabToBookmarks(bookmarkList).then(() => {
+            addActiveTabToBookmarks(bookmarkList).then((result) => {
+              idArrary = result;
               setTimeout(() => {
                 // Show 100% progress then hide the output view
                 generateOutputView.classList.remove('show');

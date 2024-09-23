@@ -157,4 +157,14 @@ export default class Bookmark {
         li.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
       });
   }
+
+  removeBookmarkNode(id){
+    if(id != '0'){
+      chrome.bookmarks.remove(id);
+      let li = document.getElementById(id);
+      if(li){
+        li.remove();
+      }
+    }
+  }
 }

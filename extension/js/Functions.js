@@ -39,7 +39,7 @@ async function generateModelInputHelper(obj, path, result) {
 
 export async function getMostSuitableFolder(url, title, permanentNodes) {
     // Configuration
-    const API_KEY = "9ae87384260c4ff285902f332abf9386";
+    const API_KEY = "API_KEY";
     const headers = {
         "Content-Type": "application/json",
         "api-key": API_KEY,
@@ -113,6 +113,7 @@ function extractAndSplit(inputString, keyword) {
 }
 
 export async function addActiveTabToBookmarks (bookmarkList) {
+    let newAddedBookmark = [];
     updateProgress(5);  // Start, progress is 5%
     const activeTab = await getCurrentActiveTab();
     updateProgress(10);  // Get tab, progress is 10%
@@ -129,7 +130,7 @@ export async function addActiveTabToBookmarks (bookmarkList) {
         for (var j in bookmarks) {
             console.log(folderArr[i]);
             console.log(bookmarks[j].title);
-            if (bookmarks[j].title === folderArr[i]) {
+            if (bookmarks[j].children && bookmarks[j].title === folderArr[i]) {
                 folderFound = true;
                 folderIdSoFar = bookmarks[j].id
                 bookmarks = bookmarks[j].children;
@@ -138,6 +139,8 @@ export async function addActiveTabToBookmarks (bookmarkList) {
         }
         if (!folderFound) {
             const newFolder = await addBookmark(folderArr[i], null, folderIdSoFar);
+            // append new folder id to newAddedBookmark array
+            newAddedBookmark.push(newFolder.id);
             bookmarkList.createHightlightFolder(newFolder);
             folderIdSoFar = newFolder.id;
             bookmarks = [];
@@ -145,7 +148,10 @@ export async function addActiveTabToBookmarks (bookmarkList) {
     }
     updateProgress(100);  // progress is 100%
     const newBookmark = await addBookmark(activeTab.title, activeTab.url, folderIdSoFar);
+    // append new url id to newAddedBookmark array
+    newAddedBookmark.push(newBookmark.id);
     bookmarkList.ScrollAndhighlight(newBookmark);
+    return newAddedBookmark;
 }
 
 function updateProgress(percentage) {
