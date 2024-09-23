@@ -48,7 +48,7 @@ export async function getMostSuitableFolder(url, title) {
     // Payload for the request
     const modelInput = await generateModelInput(); 
     const body = 
-        `Below is a bookmark list. For each Url We have the RootFolder and the the SubFolders that it is in if it is in a SubFolder Given this Url and it's Title Where should this Url be placed in this bookmark file system Output the path of where it will be placed. If the current file structure is not suitable suggest a new folder to put the new url in. Return **only** the folder path in the following format RootFolder > SubFolder 1 > ... .
+        `Below is a bookmark list. For each Url we have the RootFolder and the the SubFolders that it is in, if it is in a SubFolder. Given this Url and it's Title where should this Url be placed in this bookmark folder structure. If the available folders are not relevant create new folder structure that is most relevant to the url. Avoid using generic folders e.g. 'Other' and try to be specific. Output **ONLY** the path of where it will be placed in the following format 'RootFolder > SubFolder 1 > ...' without any explanation.
         <Domain>${url}</URL><Title>${title}</Tiltle>
         Bookmarks:${JSON.stringify(modelInput)}`;
     const payload = {
