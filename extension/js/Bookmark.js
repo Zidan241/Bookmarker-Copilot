@@ -62,13 +62,21 @@ export default class Bookmark {
     });
   }
 
+  getFavicon(url) {
+    const faviconUrl = new URL(chrome.runtime.getURL("/_favicon/"));
+    faviconUrl.searchParams.set("pageUrl", url);
+    faviconUrl.searchParams.set("size", "32");
+    return faviconUrl.toString();
+  }
+
   initUrlElement(li, node) {
     li.classList.add("bookmark");
     li.id = node.id;
     li.style.paddingLeft = 40 + "px";
 
     // Create favicon for bookmark
-    let faviconUrl = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;
+    //let faviconUrl = `https://www.google.com/s2/favicons?domain=${new URL(node.url).hostname}`;
+    let faviconUrl = this.getFavicon(node.url);
     //TODO: Fix can't load edge://favicon2 resource issue
     //let faviconUrl = `chrome://favicon/${node.url}`;
     li.innerHTML = `
